@@ -259,6 +259,13 @@
           <artifactId>slf4j-log4j12</artifactId>
           <version>1.7.13</version>
       </dependency>
+
+<!--    使用localDate-->
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis-typehandlers-jsr310</artifactId>
+      <version>1.0.1</version>
+    </dependency>
   </dependencies>
 
   <properties>

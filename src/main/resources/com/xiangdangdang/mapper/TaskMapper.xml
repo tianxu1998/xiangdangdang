@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xiangdangdang.mapper.TaskMapper">
+    <resultMap id="taskResultMap" type="com.xiangdangdang.entity.TaskWithTag">
+        <id property="task_id" column="task_id"/>
+        <result property="status" column="status"/>
+        <result property="tag_id" column="task.tag_id"/>
+        <result property="publish_time" column="publish_time"/>
+        <result property="end_time" column="end_time"/>
+        <result property="price" column="price"/>
+        <result property="accept_uid" column="accept_uid"/>
+        <result property="title" column="title"/>
+        <result property="context" column="context"/>
+        <result property="read_count" column="read_count"/>
+        <result property="publish_date" column="publish_date"/>
+        <result property="end_date" column="end_date"/>
+        <association property="tag" javaType="com.xiangdangdang.entity.Tag">
+            <id property="tag_id" column="tag.tag_id"/>
+            <result property="name" column="name"/>
+            <result property="count" column="count"/>
+        </association>
+    </resultMap>
+
+    <resultMap id="justTaskMap" type="com.xiangdangdang.entity.Task">
+        <id property="task_id" column="task_id"/>
+        <result property="status" column="status"/>
+        <result property="tag_id" column="task.tag_id"/>
+        <result property="publish_time" column="publish_time"/>
+        <result property="end_time" column="end_time"/>
+        <result property="price" column="price"/>
+        <result property="accept_uid" column="accept_uid"/>
+        <result property="title" column="title"/>
+        <result property="context" column="context"/>
+        <result property="read_count" column="read_count"/>
+        <result property="publish_date" column="publish_date"/>
+        <result property="end_date" column="end_date"/>
+    </resultMap>
+
+    <select id="findTaskLimit" parameterType="java.lang.Integer" resultMap="justTaskMap">
+        select
+            *
+        from task order by read_count desc limit #{limit};
+    </select>
+
+    <select id="findById" parameterType="java.lang.Long" resultMap="justTaskMap">
+        select * from task where task_id=#{id};
+    </select>
+
+    <select id="findByTitle" parameterType="java.lang.String" resultMap="justTaskMap">
+        select * from task where title=#{title};
+    </select>
+
+    <select id="findByTag" parameterType="java.lang.Long" resultType="com.xiangdangdang.entity.Task">
+        select * from task where tag_id=#{tag_id};
+    </select>
+
+    <select id="findByDate" parameterType="java.time.LocalDate" resultMap="justTaskMap">
+        select * from task where publish_date = #{date}
+    </select>
+
+    <select id="countByDate" parameterType="java.time.LocalDate" resultType="java.lang.Integer">
+        select count(*) from task where publish_date = #{date}
+    </select>
+
+    <select id="countEndByDate" parameterType="java.time.LocalDate" resultType="java.lang.Integer">
+        select count(*) from task where end_date = #{date}
+    </select>
+
+    <select id="search" parameterType="java.lang.String" resultMap="taskResultMap">
+        select
+            *
+        from
+            task left join tag on task.tag_id = tag.tag_id
+        where
+            task.title LIKE CONCAT('%',#{keyword},'%')
+        or
+            task.context LIKE CONCAT('%', #{keyword},'%')
+        or
+            tag.name LIKE CONCAT('%', #{keyword}, '%')
+    </select>
+
+</mapper>
