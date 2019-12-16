@@ -51,7 +51,7 @@
         select * from task where title=#{title};
     </select>
 
-    <select id="findByTag" parameterType="java.lang.Long" resultType="com.xiangdangdang.entity.Task">
+    <select id="findByTag" parameterType="java.lang.Long" resultMap="justTaskMap">
         select * from task where tag_id=#{tag_id};
     </select>
 
@@ -79,5 +79,43 @@
         or
             tag.name LIKE CONCAT('%', #{keyword}, '%')
     </select>
+
+    <update id="readCountPlus">
+        update task set read_count=#{1} where task_id=#{0}
+    </update>
+    <insert id="createTask" parameterType="com.xiangdangdang.entity.Task" useGeneratedKeys="true" keyProperty="task_id">
+        insert into
+            task(context, price, publish_date, publish_time, title, status, tag_id, read_count)
+        values(#{context}, #{price}, #{publish_date}, #{publish_time}, #{title}, #{status}, #{tag_id}, #{read_count})
+    </insert>
+    <insert id="createTaskAndUser" useGeneratedKeys="true">
+        insert into
+            task_users(task_id, publish_uid, accept_time)
+        values(#{0}, #{1}, #{2})
+    </insert>
+
+    <update id="accept">
+        update
+            task
+        set
+            accept_time=#{0},
+            accept_uid=#{1},
+            end_date=#{2},
+            status=#{4}
+        where
+            task_id=#{3} and ISNULL(accept_uid) and status = 1
+    </update>
+
+    <update id="end">
+        update
+            task
+        set
+            end_date=#{0},
+            end_time=#{1},
+            status=#{3}
+        where
+            task_id=#{2} and status = 2
+    </update>
+
 
 </mapper>

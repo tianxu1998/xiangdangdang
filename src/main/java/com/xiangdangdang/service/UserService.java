@@ -5,6 +5,7 @@ import com.xiangdangdang.entity.Role;
 import com.xiangdangdang.entity.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserService {
     void insertOne(User user);
@@ -26,4 +27,6 @@ public interface UserService {
     List<Permission> findPermissions(String username);
 
     List<User> findAll();
+
+    List<Map<String, String>> top10();
 }

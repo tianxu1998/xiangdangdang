@@ -11,4 +11,8 @@
     <select id="findByName" parameterType="java.lang.String" resultType="com.xiangdangdang.entity.User">
         select * from users where username = #{name};
     </select>
+
+    <select id="top10" resultType="java.util.Map">
+        select username, reputation from users order by reputation limit 10;
+    </select>
 </mapper>

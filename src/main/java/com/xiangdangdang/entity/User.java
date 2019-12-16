@@ -13,6 +13,7 @@ public class User implements Serializable {
     private String phone = "";
     private String qq = "";
     private int reputation = 0;
+    private Double money;
 
     public Long getUid() {
         return uid;
@@ -92,6 +93,14 @@ public class User implements Serializable {
 
     public void setReputation(int reputation) {
         this.reputation = reputation;
+    }
+
+    public Double getMoney() {
+        return money;
+    }
+
+    public void setMoney(Double money) {
+        this.money = money;
     }
 
     @Override

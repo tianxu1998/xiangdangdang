@@ -16,6 +16,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+import java.util.Map;
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -71,5 +74,19 @@ public class UserController {
             return new Result(-4, "未知错误");
         }
         return new Result(1, "登录成功");
+    }
+
+    @ResponseBody
+    @RequestMapping("/logout")
+    public Result logout() {
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+        return new Result(1, "登出成功");
+    }
+
+    @ResponseBody
+    @RequestMapping("/top10")
+    public List<Map<String, String>> top10() {
+        return userService.top10();
     }
 }

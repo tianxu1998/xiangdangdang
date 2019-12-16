@@ -4,6 +4,7 @@ package com.xiangdangdang.mapper;
 import com.xiangdangdang.entity.User;
 
 import java.util.List;
+import java.util.Map;
 
 public interface UserMapper {
 
@@ -19,4 +20,5 @@ public interface UserMapper {
 
     List<User> findAll();
 
+    List<Map<String, String>> top10();
 }

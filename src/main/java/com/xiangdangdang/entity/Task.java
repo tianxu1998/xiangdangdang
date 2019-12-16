@@ -17,7 +17,19 @@ public class Task implements Serializable {
     private Integer read_count; // 阅读次数
     private LocalDate publish_date; // 发布日期
     private LocalDate end_date; // 完成日期
+    private LocalDateTime accept_time; // 领取日期
 
+    public void setEnd_date(LocalDate end_date) {
+        this.end_date = end_date;
+    }
+
+    public LocalDateTime getAccept_time() {
+        return accept_time;
+    }
+
+    public void setAccept_time(LocalDateTime accept_time) {
+        this.accept_time = accept_time;
+    }
 
     @Override
     public String toString() {
