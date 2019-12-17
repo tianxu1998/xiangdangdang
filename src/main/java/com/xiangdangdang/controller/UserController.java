@@ -44,6 +44,15 @@ public class UserController {
         return new Result(code, errMsg);
     }
 
+    @RequestMapping("/islogin")
+    @ResponseBody
+    public Result isLogin() {
+        Subject subject = SecurityUtils.getSubject();
+        int flag = subject.isAuthenticated() ? 1 : 0;
+        String errMsg = flag == 1 ? "已登录" : "未登录";
+        return new Result(flag, errMsg);
+    }
+
     @ResponseBody
     @RequestMapping("/login")
     public Result login(String username, String password, String remember, Model model) {
