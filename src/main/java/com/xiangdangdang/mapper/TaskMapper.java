@@ -34,4 +34,8 @@ public interface TaskMapper {
     void accept(LocalDateTime end_time, Long accept_uid, LocalDate end_date, Long task_id,Integer status);
 
     void end(LocalDate end_date, LocalDateTime end_time, Long task_id, Integer status);
+
+    List<Task> findByUid(Long uid);
+
+    List<Task> findAcceptTaskByUid(Long uid);
 }

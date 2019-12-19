@@ -80,6 +80,24 @@
             tag.name LIKE CONCAT('%', #{keyword}, '%')
     </select>
 
+    <select id="findByUid" parameterType="java.lang.Long" resultType="com.xiangdangdang.entity.Task">
+        select
+            *
+        from
+            task
+        where
+            task_id in (select task_id from task_users where publish_uid = #{uid})
+    </select>
+
+    <select id="findAcceptTaskByUid" parameterType="java.lang.Long" resultType="com.xiangdangdang.entity.Task">
+        select
+            *
+        from
+            task
+        where
+            accept_uid = #{uid}
+    </select>
+
     <update id="readCountPlus">
         update task set read_count=#{1} where task_id=#{0}
     </update>
@@ -100,7 +118,6 @@
         set
             accept_time=#{0},
             accept_uid=#{1},
-            end_date=#{2},
             status=#{4}
         where
             task_id=#{3} and ISNULL(accept_uid) and status = 1

@@ -31,4 +31,8 @@ public interface TaskService {
     void accept(Long accept_uid, Long task_id);
 
     void end(Long task_id);
+
+    List<Task> findByUid(Long uid);
+
+    List<Task> findAcceptTaskByUid(Long uid);
 }

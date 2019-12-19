@@ -96,4 +96,14 @@ public class TaskServiceImpl implements TaskService {
         int status = 3;
         taskMapper.end(end_date, end_time, task_id, 3);
     }
+
+    @Override
+    public List<Task> findByUid(Long uid) {
+        return taskMapper.findByUid(uid);
+    }
+
+    @Override
+    public List<Task> findAcceptTaskByUid(Long uid) {
+        return taskMapper.findAcceptTaskByUid(uid);
+    }
 }

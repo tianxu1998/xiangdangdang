@@ -76,6 +76,20 @@ public class TaskController {
         return task;
     }
 
+    @RequestMapping("/findbyuid")
+    @ResponseBody
+    public List<Task> findByUid(Long uid) {
+        List<Task> list = taskService.findByUid(uid);
+        return list;
+    }
+
+    @RequestMapping("/findacceptbyuid")
+    @ResponseBody
+    public List<Task> findAcceptTaskByUid(Long uid) {
+        List<Task> list = taskService.findAcceptTaskByUid(uid);
+        return list;
+    }
+
 
     @RequestMapping("/readcountplus")
     @ResponseBody
@@ -102,6 +116,7 @@ public class TaskController {
     @ResponseBody
     @RequestMapping("/accept")
     public Result accept(Long accept_uid, Long task_id) {
+        if (accept_uid == 0) return new Result(0, "无此用户");
         try {
             taskService.accept(accept_uid, task_id);
         } catch (Exception e) {
