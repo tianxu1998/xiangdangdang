@@ -97,8 +97,9 @@ public class UserController {
     @RequestMapping("/finduserbytaskid")
     public User findUserByTaskId(Long task_id) {
         User user = userService.findUserByTaskId(task_id);
-        user.setPassword(null);
-        user.setSalt(null);
+        if (user == null) return new User();
+        user.setPassword("就不告诉你");
+        user.setSalt("就不告诉你");
         return user;
     }
 

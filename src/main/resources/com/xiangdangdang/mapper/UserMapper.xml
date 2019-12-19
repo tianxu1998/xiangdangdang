@@ -20,7 +20,7 @@
         select
             *
         from
-            user
+            users
         where
             uid in (select publish_uid from task_users where task_id=#{task_id})
     </select>
