@@ -3,6 +3,7 @@ package com.xiangdangdang.controller;
 import com.xiangdangdang.entity.User;
 import com.xiangdangdang.service.UserService;
 import com.xiangdangdang.service.impl.UserServiceImpl;
+import com.xiangdangdang.util.LoginResult;
 import com.xiangdangdang.util.Result;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
@@ -82,7 +83,8 @@ public class UserController {
             e.printStackTrace();
             return new Result(-4, "未知错误");
         }
-        return new Result(1, "登录成功");
+        User user = userService.findByName(username);
+        return new LoginResult(1, "登录成功", user.getUid(),user.getUsername(),user.getReputation());
     }
 
     @ResponseBody

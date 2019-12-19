@@ -3,6 +3,8 @@ package com.xiangdangdang.util;
 public class Result {
     private int code;
     private String errMsg;
+    public Result() {
+    }
     public Result(int code, String errMsg) {
         this.code = code;
         this.errMsg = errMsg;
