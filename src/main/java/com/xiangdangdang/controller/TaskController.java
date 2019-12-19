@@ -69,6 +69,14 @@ public class TaskController {
         return res;
     }
 
+    @RequestMapping("/findbyid")
+    @ResponseBody
+    public Task findById(Long task_id){
+        Task task = taskService.findById(task_id);
+        return task;
+    }
+
+
     @RequestMapping("/readcountplus")
     @ResponseBody
     public Result readCountPlus(Long task_id, Integer read_count) {
