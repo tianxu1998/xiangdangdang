@@ -94,6 +94,15 @@ public class UserController {
     }
 
     @ResponseBody
+    @RequestMapping("/finduserbytaskid")
+    public User findUserByTaskId(Long task_id) {
+        User user = userService.findUserByTaskId(task_id);
+        user.setPassword(null);
+        user.setSalt(null);
+        return user;
+    }
+
+    @ResponseBody
     @RequestMapping("/top10")
     public List<Map<String, String>> top10() {
         return userService.top10();

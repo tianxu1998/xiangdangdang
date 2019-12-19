@@ -75,4 +75,9 @@ public class UserServiceImpl implements UserService {
     public List<Map<String, String>> top10() {
         return userMapper.top10();
     }
+
+    @Override
+    public User findUserByTaskId(Long task_id) {
+        return userMapper.findUserByTaskId(task_id);
+    }
 }

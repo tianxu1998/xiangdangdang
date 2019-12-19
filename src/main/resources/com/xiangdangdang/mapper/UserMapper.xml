@@ -15,4 +15,13 @@
     <select id="top10" resultType="java.util.Map">
         select username, reputation from users order by reputation limit 10;
     </select>
+
+    <select id="findUserByTaskId" resultType="com.xiangdangdang.entity.User" parameterType="java.lang.Long">
+        select
+            *
+        from
+            user
+        where
+            uid in (select publish_uid from task_users where task_id=#{task_id})
+    </select>
 </mapper>

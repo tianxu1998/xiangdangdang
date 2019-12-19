@@ -21,4 +21,6 @@ public interface UserMapper {
     List<User> findAll();
 
     List<Map<String, String>> top10();
+
+    User findUserByTaskId(Long task_id);
 }
