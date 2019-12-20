@@ -6,6 +6,7 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+//跨域访问
 @Component
 public class CorsFilter implements Filter {
     @Override
@@ -15,7 +16,6 @@ public class CorsFilter implements Filter {
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
-        System.out.printf("---------CORS过滤---------");
         filterChain.doFilter(servletRequest, response);
     }
 

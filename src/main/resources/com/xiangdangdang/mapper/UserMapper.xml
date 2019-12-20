@@ -13,7 +13,7 @@
     </select>
 
     <select id="top10" resultType="java.util.Map">
-        select username, reputation from users order by reputation limit 10;
+        select username, reputation from users order by reputation desc limit 10;
     </select>
 
     <select id="findUserByTaskId" resultType="com.xiangdangdang.entity.User" parameterType="java.lang.Long">

@@ -120,7 +120,7 @@
             accept_uid=#{1},
             status=#{4}
         where
-            task_id=#{3} and ISNULL(accept_uid) and status = 1
+            task_id=#{3} and status = 1
     </update>
 
     <update id="end">

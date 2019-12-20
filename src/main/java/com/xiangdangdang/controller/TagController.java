@@ -15,7 +15,16 @@ import java.util.List;
 public class TagController {
     @Autowired
     private TagService tagService;
-
+/*
+* 登录
+* 注册
+* 发布任务
+* 领取任务
+* 浏览任务
+* 用户排行
+* 更新任务热度
+* 对领取和发布任务的操作
+* */
     @ResponseBody
     @RequestMapping("/alltag")
     public List<Tag> allTag() {
